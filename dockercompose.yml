@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  user-service:
+    build: ./user
+    ports:
+      - "8001:8000"
+
+  order-service:
+    build: ./order
+    ports:
+      - "8002:8000"
+    environment:
+      - USER_SERVICE_URL=http://user-service:8000
+
+  tracking-service:
+    build: ./tracking
+    ports:
+      - "8003:8000"
+    environment:
+      - ORDER_SERVICE_URL=http://order-service:8000
+
