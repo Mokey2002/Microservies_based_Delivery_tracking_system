@@ -6,7 +6,7 @@ services:
       - "8001:8000"
 
   order-service:
-    build: ./order
+    build: ./Order
     ports:
       - "8002:8000"
     environment:
