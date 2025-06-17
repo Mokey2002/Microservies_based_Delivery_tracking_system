@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
-from app import models, schemas
+from app import models
+from app import schemas
 
 def create_tracking(db: Session, tracking: schemas.TrackingCreate):
     db_tracking = models.Tracking(**tracking.dict())
