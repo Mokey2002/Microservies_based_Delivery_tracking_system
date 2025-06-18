@@ -14,13 +14,13 @@ def validate_user(user_id: int):
         raise HTTPException(status_code=400, detail="User does not exist")
         
         
-@app.post("/orders/", response_model=schemas.Orders)
+@app.post("/orders/", response_model=schemas.Order)
 def create_order(order: schemas.OrderCreate, db: Session = Depends(database.get_db)):
     validate_user(order.user_id)
     return crud.create_order(db, Order)
     
     
-@app.get("/orders/{order_id}", response_model=schemas.Orders)
+@app.get("/orders/{order_id}", response_model=schemas.Order)
 def read_order(order_id: int, db: Session = Depends(database.get_db)):
     db_Order = crud.get_order(db, order_id)
     if db_Order is None:
